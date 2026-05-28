@@ -3,233 +3,224 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wellton Towers — Семейный Хаб</title>
+  <title>Wellton Towers — Family Hub v2</title>
   <style>
     :root {
-      --bg: #0c1520;
-      --bg2: #132435;
-      --card: #101d2b;
-      --line: #25384c;
-      --text: #eaf2fb;
-      --muted: #9fb3c7;
-      --accent: #6fd6c2;
-      --accent2: #3aa0ff;
-      --warn: #ffd78a;
+      --bg: #0d0b09;
+      --bg-soft: #171311;
+      --card: #1f1813;
+      --line: #4f3d26;
+      --text: #f9f3e8;
+      --muted: #c8b79e;
+      --gold: #f0c77b;
+      --gold-2: #d7a24d;
       --ok: #8ee2a7;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Segoe UI", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       color: var(--text);
+      font-family: "Manrope", "Segoe UI", sans-serif;
       background:
-        radial-gradient(1200px 600px at 80% -20%, #20496d55, transparent 60%),
-        radial-gradient(1000px 500px at -10% -20%, #2f8d8955, transparent 60%),
-        linear-gradient(140deg, var(--bg), var(--bg2));
+        radial-gradient(900px 500px at 80% -10%, #7c561a30, transparent 60%),
+        radial-gradient(900px 500px at -10% -20%, #50310d30, transparent 60%),
+        linear-gradient(155deg, var(--bg), var(--bg-soft));
       min-height: 100vh;
     }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 22px; }
     .hero {
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 20px;
-      background: linear-gradient(145deg, #102234cc, #0e1a27cc);
-      backdrop-filter: blur(4px);
-      box-shadow: 0 12px 40px #00000040;
+      padding: 22px;
+      background: linear-gradient(150deg, #261d16ee, #17120eee);
+      box-shadow: 0 12px 36px #00000055;
     }
-    h1 { margin: 0 0 10px; font-size: 30px; letter-spacing: .3px; }
+    h1 { margin: 0 0 10px; font-size: 32px; }
     .sub { margin: 0; color: var(--muted); line-height: 1.5; }
-    .toolbar {
-      margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap;
-    }
-    .input, .btn {
-      border-radius: 10px;
+    .bar { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .input, .btn, .toggle {
       border: 1px solid var(--line);
-      background: #0c1825;
+      background: #1b1511;
       color: var(--text);
+      border-radius: 12px;
       padding: 10px 12px;
       font-size: 14px;
     }
     .input { min-width: 260px; flex: 1; }
-    .btn { cursor: pointer; }
-    .btn:hover { border-color: var(--accent2); }
+    .btn, .toggle { cursor: pointer; }
+    .btn:hover, .toggle:hover { border-color: var(--gold); }
+    .kpis { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      background: #18120f;
+    }
     .grid {
-      margin-top: 16px;
+      margin-top: 14px;
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
       gap: 12px;
+      grid-template-columns: repeat(12, 1fr);
     }
     .card {
       grid-column: span 12;
       border: 1px solid var(--line);
       border-radius: 14px;
-      background: var(--card);
       padding: 14px;
+      background: var(--card);
     }
-    .card h2 { margin: 0 0 10px; font-size: 18px; }
-    .kpi { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .chip {
-      border: 1px solid var(--line);
-      background: #0c1a27;
-      border-radius: 999px;
-      padding: 6px 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .card h2 { margin: 0 0 10px; font-size: 18px; color: var(--gold); }
     .list { display: grid; gap: 8px; }
     .item {
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 10px;
-      background: #0c1a27;
+      background: #1a1410;
     }
-    .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .name { font-weight: 600; }
-    .meta { color: var(--muted); font-size: 13px; }
-    .rating { color: var(--ok); font-weight: 600; }
-    .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px dashed #6fd6c266;
+    .row { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .name { font-weight: 700; display: flex; gap: 8px; align-items: center; }
+    .meta { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .links { margin-top: 6px; display: flex; gap: 10px; flex-wrap: wrap; }
+    a { color: var(--gold); text-decoration: none; border-bottom: 1px dashed #f0c77b55; }
+    a:hover { color: #ffe3b2; }
+    .logo {
+      width: 24px; height: 24px; border-radius: 6px; display: inline-grid; place-items: center;
+      background: #2a2018; border: 1px solid var(--line); font-size: 12px; font-weight: 800;
     }
-    a:hover { color: #b9fff2; border-bottom-style: solid; }
-    .warn { color: var(--warn); font-size: 13px; }
-    @media (min-width: 900px) {
-      .col-6 { grid-column: span 6; }
-      .col-4 { grid-column: span 4; }
-      .col-8 { grid-column: span 8; }
+    .score { font-size: 13px; color: var(--ok); font-weight: 700; }
+    .stage { color: var(--muted); font-size: 13px; }
+    .progress {
+      margin-top: 8px; height: 8px; border-radius: 999px; background: #2a2018; overflow: hidden;
+    }
+    .progress > i {
+      display: block; height: 100%; width: var(--v, 50%); background: linear-gradient(90deg, var(--gold-2), var(--gold));
+    }
+    @media (min-width: 920px) {
+      .c6 { grid-column: span 6; }
+      .c4 { grid-column: span 4; }
+      .c8 { grid-column: span 8; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>Wellton Towers — семейная инфо-памятка</h1>
-      <p class="sub">
-        Адрес: Москва, ул. Народного Ополчения, 15к2 (кв. 320). Быстрый доступ к чатам, контактам, провайдерам, документам и полезным ссылкам.
-      </p>
-      <div class="toolbar">
-        <input id="search" class="input" placeholder="Поиск по странице: провайдер, чат, контакт, документ..." />
-        <button id="copyAddress" class="btn">Скопировать адрес</button>
+      <h1>Wellton Towers — Premium Family Hub v2</h1>
+      <p class="sub">Наглядная интерактивная памятка по вашему дому: чаты, провайдеры, документы, контакты, сценарии действий.</p>
+      <div class="bar">
+        <input id="q" class="input" placeholder="Быстрый поиск по хабу..." />
+        <button id="copyAddr" class="btn">Скопировать адрес</button>
+        <button id="modeBtn" class="toggle">Режим: Памятка</button>
       </div>
-      <div class="kpi">
-        <span class="chip">Провайдеров в доме: 17 (по 2ГИС)</span>
-        <span class="chip">1 подъезд, кв. 320</span>
-        <span class="chip">Статус выбора: приоритет МТС Home, резерв Ростелеком</span>
+      <div class="kpis">
+        <span class="chip">Адрес: Народного Ополчения, 15к2, кв. 320</span>
+        <span class="chip">Провайдеры в доме: 17</span>
+        <span class="chip">Целевая эстетика: тёмно-золотая premium</span>
       </div>
     </section>
 
     <section class="grid" id="cards">
-      <article class="card col-6 searchable">
-        <h2>Домовые чаты и каналы</h2>
+      <article class="card c6 searchable">
+        <h2>Домовые чаты и новости</h2>
         <div class="list">
           <div class="item">
-            <div class="name">Чат жителей ЖК Wellton Towers</div>
-            <div class="meta">Основной источник «живых» отзывов и практики по дому</div>
-            <div class="links"><a href="https://t.me/jk_wellton_towers" target="_blank" rel="noopener">t.me/jk_wellton_towers</a></div>
+            <div class="name"><span class="logo">TG</span>Чат жителей Wellton Towers</div>
+            <div class="meta">Живые отзывы по интернету, ремонту, сервисам</div>
+            <div class="links"><a href="https://t.me/jk_wellton_towers" target="_blank" rel="noopener">Открыть чат</a></div>
           </div>
           <div class="item">
-            <div class="name">Официальный канал УК</div>
-            <div class="meta">Новости и объявления по ЖК</div>
-            <div class="links"><a href="https://t.me/wellton_towers" target="_blank" rel="noopener">t.me/wellton_towers</a></div>
+            <div class="name"><span class="logo">UK</span>Официальный канал ЖК</div>
+            <div class="meta">Регламентные объявления и важные уведомления</div>
+            <div class="links"><a href="https://t.me/wellton_towers" target="_blank" rel="noopener">Открыть канал</a></div>
           </div>
         </div>
       </article>
 
-      <article class="card col-6 searchable">
-        <h2>Провайдеры и интернет</h2>
+      <article class="card c6 searchable">
+        <h2>Провайдеры с логотипами и рейтингом</h2>
         <div class="list">
           <div class="item">
             <div class="row">
               <div>
-                <div class="name">МТС Home</div>
-                <div class="meta">Рекомендуемый старт: подключение без жесткого долгого контракта</div>
+                <div class="name"><span class="logo">МТС</span>МТС Home</div>
+                <div class="meta">Рекомендуемый старт без жёсткой долгосрочной фиксации</div>
               </div>
-              <div class="rating">Приоритет №1</div>
+              <div class="score">Рейтинг сценария: 9.1/10</div>
             </div>
-            <div class="links">
-              <a href="https://www.moskvaonline.ru/rating/mts-home" target="_blank" rel="noopener">Отзывы (Москва)</a>
-            </div>
+            <div class="progress"><i style="--v:91%"></i></div>
+            <div class="links"><a href="https://www.moskvaonline.ru/rating/mts-home" target="_blank" rel="noopener">Отзывы (Москва)</a></div>
           </div>
           <div class="item">
             <div class="row">
               <div>
-                <div class="name">Ростелеком</div>
-                <div class="meta">Резервный вариант</div>
+                <div class="name"><span class="logo">RT</span>Ростелеком</div>
+                <div class="meta">Резервный вариант, если условия МТС в стояке не подходят</div>
               </div>
-              <div class="rating">Резерв</div>
+              <div class="score">Рейтинг сценария: 8.0/10</div>
             </div>
+            <div class="progress"><i style="--v:80%"></i></div>
           </div>
           <div class="item">
-            <div class="name">Все провайдеры дома (2ГИС)</div>
-            <div class="meta">Актуальный список по адресу, включая варианты подключения</div>
-            <div class="links">
-              <a href="https://2gis.ru/moscow/geo/70030076143546450/tab/providers" target="_blank" rel="noopener">Открыть список</a>
-            </div>
+            <div class="name"><span class="logo">2Г</span>Полный список по дому</div>
+            <div class="links"><a href="https://2gis.ru/moscow/geo/70030076143546450/tab/providers" target="_blank" rel="noopener">Провайдеры в 2ГИС</a></div>
           </div>
         </div>
       </article>
 
-      <article class="card col-8 searchable">
-        <h2>Готовый чек-лист перед подключением провайдера</h2>
+      <article class="card c8 searchable">
+        <h2>7 параметров premium-класса</h2>
         <div class="list">
-          <div class="item">1. Спросить в чате дома: кто на 300+ этажах сидит на МТС/Ростелеком и как ведет себя интернет по вечерам.</div>
-          <div class="item">2. Уточнить у провайдера: технология (GPON/FTTB), реальная скорость в вашем стояке, какие роутеры поддерживают Wi‑Fi 6.</div>
-          <div class="item">3. В первые 3 дня сделать тесты утром и вечером: speedtest + ping + 15-мин видеозвонок.</div>
-          <div class="item">4. Если есть частые просадки или вечерние потери пакетов, сразу оформлять переход на резервного оператора.</div>
+          <div class="item"><b>1.</b> Стабильность в часы пик <span class="stage">— цель: без просадок вечером</span></div>
+          <div class="item"><b>2.</b> Реальная скорость vs. тариф <span class="stage">— сверка утром/вечером</span></div>
+          <div class="item"><b>3.</b> Качество поддержки <span class="stage">— время реакции и закрытия инцидента</span></div>
+          <div class="item"><b>4.</b> Честность условий <span class="stage">— без скрытых повышений цены</span></div>
+          <div class="item"><b>5.</b> Гибкость расторжения <span class="stage">— минимальные риски смены</span></div>
+          <div class="item"><b>6.</b> Качество Wi‑Fi в квартире <span class="stage">— покрытие и задержка по комнатам</span></div>
+          <div class="item"><b>7.</b> Репутация по вашему стояку <span class="stage">— реальные соседи важнее общей рекламы</span></div>
         </div>
       </article>
 
-      <article class="card col-4 searchable">
-        <h2>Полезные данные</h2>
+      <article class="card c4 searchable">
+        <h2>Полезное рядом</h2>
         <div class="list">
-          <div class="item"><div class="name">Адрес</div><div class="meta">Москва, ул. Народного Ополчения, 15к2, кв. 320</div></div>
-          <div class="item"><div class="name">Карта/дом</div><div class="links"><a href="https://2gis.ru/moscow/geo/70030076143546450" target="_blank" rel="noopener">Открыть в 2ГИС</a></div></div>
-          <div class="item"><div class="name">Экстренные номера</div><div class="meta">112 (единый), 102 (полиция), 103 (скорая), 104 (газ)</div></div>
+          <div class="item"><div class="name">Карта дома</div><div class="links"><a href="https://2gis.ru/moscow/geo/70030076143546450" target="_blank" rel="noopener">Открыть в 2ГИС</a></div></div>
+          <div class="item"><div class="name">ЖК РФ</div><div class="links"><a href="http://www.consultant.ru/document/cons_doc_LAW_51057/" target="_blank" rel="noopener">Права собственника</a></div></div>
+          <div class="item"><div class="name">ГИС ЖКХ</div><div class="links"><a href="https://dom.gosuslugi.ru/" target="_blank" rel="noopener">Открыть портал</a></div></div>
         </div>
-      </article>
-
-      <article class="card searchable">
-        <h2>Права собственника и документы</h2>
-        <div class="list">
-          <div class="item">
-            <div class="name">Жилищный кодекс РФ</div>
-            <div class="links"><a href="http://www.consultant.ru/document/cons_doc_LAW_51057/" target="_blank" rel="noopener">consultant.ru</a></div>
-          </div>
-          <div class="item">
-            <div class="name">ГИС ЖКХ</div>
-            <div class="meta">Проверка сведений по дому, начислений, обращений</div>
-            <div class="links"><a href="https://dom.gosuslugi.ru/" target="_blank" rel="noopener">dom.gosuslugi.ru</a></div>
-          </div>
-        </div>
-        <p class="warn">Важно: контакты и тарифы могут меняться. Перед решениями проверяйте актуальность по ссылкам.</p>
       </article>
     </section>
   </div>
 
   <script>
-    const search = document.getElementById('search');
     const cards = [...document.querySelectorAll('.searchable')];
-    const copyAddressBtn = document.getElementById('copyAddress');
-    const address = 'Москва, ул. Народного Ополчения, 15к2, кв. 320';
+    const q = document.getElementById('q');
+    const copyAddr = document.getElementById('copyAddr');
+    const modeBtn = document.getElementById('modeBtn');
+    const addr = 'Москва, ул. Народного Ополчения, 15к2, кв. 320';
+    let compact = false;
 
-    search.addEventListener('input', () => {
-      const q = search.value.trim().toLowerCase();
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = !q || text.includes(q) ? '' : 'none';
-      });
+    q.addEventListener('input', () => {
+      const v = q.value.trim().toLowerCase();
+      cards.forEach(c => c.style.display = (!v || c.innerText.toLowerCase().includes(v)) ? '' : 'none');
     });
 
-    copyAddressBtn.addEventListener('click', async () => {
+    copyAddr.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(address);
-        copyAddressBtn.textContent = 'Скопировано';
-        setTimeout(() => copyAddressBtn.textContent = 'Скопировать адрес', 1200);
+        await navigator.clipboard.writeText(addr);
+        copyAddr.textContent = 'Скопировано';
+        setTimeout(() => copyAddr.textContent = 'Скопировать адрес', 1200);
       } catch (_) {
-        alert(address);
+        alert(addr);
       }
+    });
+
+    modeBtn.addEventListener('click', () => {
+      compact = !compact;
+      document.body.style.fontSize = compact ? '14px' : '';
+      document.querySelectorAll('.card').forEach(c => c.style.padding = compact ? '10px' : '14px');
+      modeBtn.textContent = compact ? 'Режим: Компактный' : 'Режим: Памятка';
     });
   </script>
 </body>
